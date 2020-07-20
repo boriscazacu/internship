@@ -16,11 +16,11 @@ public class Student extends PanacheEntityBase {
     @ManyToOne(fetch = FetchType.LAZY)
     private Grupa grupId;
 
-    public Student(String firstName, String lastName, String sex, Long grupId) {
+    public Student(String firstName, String lastName, String sex, Grupa grup) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.sex = sex;
-        this.grupId.grupId = grupId;
+        this.grupId = grup;
     }
     public Student(){}
 
@@ -37,7 +37,7 @@ public class Student extends PanacheEntityBase {
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", sex='" + sex + '\'' +
-                ", grupId=" + grupId +
+                ", grupId=" + grupId.getGrupName() +
                 '}';
     }
 }

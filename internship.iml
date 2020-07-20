@@ -6,7 +6,7 @@
         <setting name="validation-enabled" value="true" />
         <setting name="provider-name" value="Hibernate" />
         <datasource-mapping>
-          <factory-entry name="Entities" />
+          <factory-entry name="internship" value="9f18d270-4df4-4ac6-afd5-0b8f209895ed" />
         </datasource-mapping>
         <naming-strategy-map />
       </configuration>
@@ -47,7 +47,6 @@
     <orderEntry type="library" name="Maven: io.netty:netty-resolver:4.1.49.Final" level="project" />
     <orderEntry type="library" name="Maven: io.netty:netty-resolver-dns:4.1.49.Final" level="project" />
     <orderEntry type="library" name="Maven: io.netty:netty-codec-dns:4.1.49.Final" level="project" />
-    <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-core:2.10.4" level="project" />
     <orderEntry type="library" name="Maven: io.vertx:vertx-web:3.9.1" level="project" />
     <orderEntry type="library" name="Maven: io.vertx:vertx-web-common:3.9.1" level="project" />
     <orderEntry type="library" name="Maven: io.vertx:vertx-auth-common:3.9.1" level="project" />
@@ -211,5 +210,8 @@
     <orderEntry type="library" name="Maven: io.quarkus.arc:arc:1.6.0.Final" level="project" />
     <orderEntry type="library" name="Maven: org.eclipse.microprofile.context-propagation:microprofile-context-propagation-api:1.0.1" level="project" />
     <orderEntry type="library" name="Maven: io.quarkus:quarkus-panache-common:1.6.0.Final" level="project" />
+    <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.11.1" level="project" />
+    <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.10.4" level="project" />
+    <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-core:2.10.4" level="project" />
   </component>
 </module>

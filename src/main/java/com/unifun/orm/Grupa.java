@@ -9,9 +9,14 @@ public class Grupa extends PanacheEntityBase {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
+   /// @Column(name = "grupId")
     public Long grupId;
     public String grupName;
     public String grupMentor;
+
+    public String getGrupName() {
+        return grupName;
+    }
 
     @Override
     public String toString() {

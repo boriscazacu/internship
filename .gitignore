@@ -2,5 +2,6 @@ debug.log
 .idea/
 logs/
 target/
-Vectors.iml
+*.iml
+*.versionsBackup
 newfile.json
