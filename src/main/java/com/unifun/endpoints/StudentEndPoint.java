@@ -3,16 +3,24 @@ package com.unifun.endpoints;
 import com.unifun.orm.Grupa;
 import com.unifun.orm.Student;
 
-import javax.persistence.PostUpdate;
+import javax.servlet.http.HttpServletRequest;
 import javax.transaction.Transactional;
 import javax.ws.rs.*;
+import javax.ws.rs.core.Context;
+import javax.json.Json;
+import javax.json.JsonObject;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+//import io.quarkus.vertx.http.runtime.devmode.Json;
+//import io.vertx.core.json.JsonObject;
+
+import java.io.StringReader;
+import java.util.logging.Logger;
 
 @Path("api/student")
 public class StudentEndPoint {
-
+    private static final Logger LOGGER = Logger.getLogger(String.valueOf(StudentEndPoint.class));
     @GET
     @Path("list")
     public String getListOfStudents() throws JsonProcessingException {
@@ -27,27 +35,36 @@ public class StudentEndPoint {
     }
 
     @POST
-    @Path("add")
+    @Path("/addStudent")
     @Transactional
-    public String addStudent( @QueryParam("fname") String fName, @QueryParam("lname") String lName,
-                             @QueryParam("sex") String sex, @QueryParam("grId") Long grId){
+    public String addStudent(String body){
+        JsonObject json = Json.createReader(new StringReader(body)).readObject();
 
-        Grupa grupa = Grupa.findById(grId);
-        Student student = new Student(fName,lName,sex,grupa);
+		Student student = new Student(
+            json.getString("firstName"),
+            json.getString("lastName"),
+            json.getString("sex"),
+            Grupa.findById(Long.parseLong(json.getString("idGr")))
+            );
         student.persist();
+        LOGGER.info(student.toString());
         return student.isPersistent() ? "sa salvat" : "nu sa salvat";
     }
     @PUT
-    @Path("update")
+    @Path("/update")
     @Transactional
-    public String updateById(@QueryParam("id") Long id, @QueryParam("fname") String fName,
-                             @QueryParam("lname") String lName, @QueryParam("sex") String sex){
-        Student student = Student.findById(id);
+    public String updateById(String update){
+        JsonObject json = Json.createReader(new StringReader(update)).readObject();
+
+        Student student = Student.findById(Long.parseLong(json.getString("id")));
         if (student != null){
-            student.firstName = fName;
-            student.lastName = lName;
-            student.sex = sex;
-            student.persist();
+            if (student.firstName != json.getString("firstName")) {
+                student.firstName = json.getString("firstName");
+            }if (student.lastName != json.getString("lastName")) {
+                student.lastName = json.getString("lastName");
+            }if (student.sex != json.getString("sex")) {
+                student.sex = json.getString("sex");
+            }
             return "update succes";
         }else{
             return "nu such student";

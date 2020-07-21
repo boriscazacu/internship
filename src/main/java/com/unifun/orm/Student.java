@@ -8,13 +8,13 @@ import javax.transaction.Transactional;
 @Entity(name = "student")
 public class Student extends PanacheEntityBase {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long id;
     public String firstName;
     public String lastName;
     public String sex;
     @ManyToOne(fetch = FetchType.LAZY)
-    private Grupa grupId;
+    public Grupa grupId;
 
     public Student(String firstName, String lastName, String sex, Grupa grup) {
         this.firstName = firstName;
@@ -37,7 +37,7 @@ public class Student extends PanacheEntityBase {
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", sex='" + sex + '\'' +
-                ", grupId=" + grupId.getGrupName() +
+                ", Grup=" + grupId +
                 '}';
     }
 }
