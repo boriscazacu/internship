@@ -11,18 +11,18 @@ import javax.transaction.Transactional;
 import javax.ws.rs.*;
 import java.io.StringReader;
 
-@Path("api/grup")
+@Path("api/group")
 public class GrupEndPoint {
 
     @GET
-    @Path("list")
+    @Path("/list")
     public String getGrupList() throws JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper();
         return mapper.writeValueAsString(Grupa.listAll());
     }
 
     @GET
-    @Path("listById")
+    @Path("/listById")
     public String getGrupListById(@QueryParam("id") Long id) throws JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper();
         return mapper.writeValueAsString(Grupa.findById(id));

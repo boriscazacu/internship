@@ -12,8 +12,6 @@ import javax.json.JsonObject;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-//import io.quarkus.vertx.http.runtime.devmode.Json;
-//import io.vertx.core.json.JsonObject;
 
 import java.io.StringReader;
 import java.util.logging.Logger;
@@ -64,6 +62,8 @@ public class StudentEndPoint {
                 student.lastName = json.getString("lastName");
             }if (student.sex != json.getString("sex")) {
                 student.sex = json.getString("sex");
+             }if (json.getString("idGr") != "0" ) {
+                student.grupId = Grupa.findById(Long.parseLong(json.getString("idGr")));
             }
             return "update succes";
         }else{
